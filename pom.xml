@@ -15,7 +15,7 @@
     </properties>
 
     <modules>
-
+        <module>DependencyInjection</module>
     </modules>
 
 </project>
