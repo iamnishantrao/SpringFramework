@@ -1,9 +1,6 @@
 package org.example.dependencyinjection;
 
-import org.example.dependencyinjection.controllers.ConstructorInjectedController;
-import org.example.dependencyinjection.controllers.PropertyInjectedController;
-import org.example.dependencyinjection.controllers.SetterInjectedController;
-import org.example.dependencyinjection.controllers.SpringContextController;
+import org.example.dependencyinjection.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -33,6 +30,10 @@ public class DependencyInjectionApplication {
 		System.out.println("\n----------Constructor Based----------");
 		ConstructorInjectedController constructorInjectedController = ctx.getBean(ConstructorInjectedController.class);
 		System.out.println(constructorInjectedController.getGreeting());
+
+		System.out.println("\n----------Profile Based----------");
+		I18nController i18nController = ctx.getBean(I18nController.class);
+		System.out.println(i18nController.sayHello());
 	}
 
 }
