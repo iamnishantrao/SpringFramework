@@ -15,8 +15,8 @@
     </properties>
 
     <modules>
-        <module>WebApp</module>
         <module>DependencyInjection</module>
+        <module>WebApp</module>
     </modules>
 
 </project>
