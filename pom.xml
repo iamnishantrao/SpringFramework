@@ -16,6 +16,7 @@
 
     <modules>
         <module>WebApp</module>
+        <module>DependencyInjection</module>
     </modules>
 
 </project>
