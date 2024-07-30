@@ -11,7 +11,12 @@ import org.springframework.context.annotation.ComponentScan;
 public class SpringConfigurationApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringConfigurationApplication.class, args);
+
+        ApplicationContext ctx = SpringApplication.run(SpringConfigurationApplication.class, args);
+
+        GreetingController greetingController = ctx.getBean(GreetingController.class);
+        System.out.println("----------Greeting Controller----------");
+        System.out.println(greetingController.getGreeting());
     }
 
 }
