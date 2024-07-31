@@ -3,11 +3,13 @@ package org.example.externalproperties.config;
 import org.example.externalproperties.datasource.AppDataSource;
 import org.example.externalproperties.datasource.DataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@EnableConfigurationProperties(ConstructorBasedConfiguration.class)
 @PropertySource("classpath:datasource.properties")
 public class DataSourceConfiguration {
 
