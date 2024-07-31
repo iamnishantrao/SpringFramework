@@ -2,6 +2,7 @@ package org.example.springconfiguration;
 
 import org.example.springconfiguration.controllers.ConfigBasedGreetingController;
 import org.example.springconfiguration.controllers.GreetingController;
+import org.example.springconfiguration.controllers.I18NConfigBasedGreetingController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -22,6 +23,10 @@ public class SpringConfigurationApplication {
         ConfigBasedGreetingController configBasedGreetingController = ctx.getBean(ConfigBasedGreetingController.class);
         System.out.println("\n----------Config Based Greeting----------");
         System.out.println(configBasedGreetingController.getGreeting());
+
+        I18NConfigBasedGreetingController i18nGreetingController = ctx.getBean(I18NConfigBasedGreetingController.class);
+        System.out.println("\n----------I18N Config Based Greeting----------");
+        System.out.println(i18nGreetingController.sayGreeting());
     }
 
 }
