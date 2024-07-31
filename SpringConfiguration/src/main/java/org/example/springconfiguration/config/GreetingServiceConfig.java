@@ -5,12 +5,10 @@ import org.example.pets.PetServiceFactory;
 import org.example.repositories.EnglishGreetingRepository;
 import org.example.repositories.EnglishGreetingRepositoryImpl;
 import org.example.services.*;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.*;
 
 @Configuration
+@ImportResource("classpath:xml-config.xml")
 public class GreetingServiceConfig {
 
     @Bean
