@@ -12,11 +12,6 @@ import org.springframework.context.annotation.*;
 public class GreetingServiceConfig {
 
     @Bean
-    GreetingService greetingService() {
-        return new GreetingServiceImpl();
-    }
-
-    @Bean
     ConfigBasedGreetingService configBasedGreetingServiceImpl() {
         return new ConfigBasedGreetingServiceImpl();
     }
