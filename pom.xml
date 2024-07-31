@@ -16,6 +16,7 @@
 
     <modules>
         <module>DependencyInjection</module>
+        <module>ExternalProperties</module>
         <module>SpringConfiguration</module>
         <module>WebApp</module>
     </modules>
