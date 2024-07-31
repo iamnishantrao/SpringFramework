@@ -1,0 +1,4 @@
+app:
+  username: yml.hello.qa
+  password: yml.world.qa
+  url: yml.iamnishantrao.jdbc.qa
