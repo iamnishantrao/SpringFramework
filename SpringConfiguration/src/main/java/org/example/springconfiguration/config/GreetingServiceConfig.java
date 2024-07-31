@@ -1,11 +1,10 @@
 package org.example.springconfiguration.config;
 
+import org.example.pets.PetService;
+import org.example.pets.PetServiceFactory;
 import org.example.repositories.EnglishGreetingRepository;
 import org.example.repositories.EnglishGreetingRepositoryImpl;
-import org.example.services.ConfigBasedGreetingServiceImpl;
-import org.example.services.I18NEnglishConfigBasedGreetingService;
-import org.example.services.I18NSpanishConfigBasedGreetingService;
-import org.example.services.PrimaryConfigBasedGreetingService;
+import org.example.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -15,15 +14,20 @@ import org.springframework.context.annotation.Profile;
 public class GreetingServiceConfig {
 
     @Bean
-    ConfigBasedGreetingServiceImpl configBasedGreetingServiceImpl() {
+    GreetingService greetingService() {
+        return new GreetingServiceImpl();
+    }
+
+    @Bean
+    ConfigBasedGreetingService configBasedGreetingServiceImpl() {
         return new ConfigBasedGreetingServiceImpl();
     }
 
     @Bean
     @Primary
-    PrimaryConfigBasedGreetingService primaryConfigBasedGreetingService() {
+    ConfigBasedGreetingService primaryConfigBasedGreetingService() {
         return new PrimaryConfigBasedGreetingService();
-    };
+    }
 
     @Bean
     EnglishGreetingRepository englishGreetingRepository() {
@@ -36,7 +40,7 @@ public class GreetingServiceConfig {
      */
     @Bean
     @Profile("EN")
-    I18NEnglishConfigBasedGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository) {
+    ConfigBasedGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository) {
         return new I18NEnglishConfigBasedGreetingService(englishGreetingRepository);
     }
 
@@ -45,7 +49,24 @@ public class GreetingServiceConfig {
      */
     @Bean("i18nService")
     @Profile({"ES", "default"})
-    I18NSpanishConfigBasedGreetingService i18nSpanishService() {
+    ConfigBasedGreetingService i18nSpanishService() {
         return new I18NSpanishConfigBasedGreetingService();
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory() {
+        return new PetServiceFactory();
+    }
+
+    @Bean
+    @Profile("cat")
+    PetService petService(PetServiceFactory petServiceFactory) {
+        return petServiceFactory.getPetService("cat");
+    }
+
+    @Bean
+    @Profile({"dog", "default"})
+    PetService dogPetService(PetServiceFactory petServiceFactory) {
+        return petServiceFactory.getPetService("dog");
     }
 }
