@@ -1,5 +1,6 @@
 package org.example.externalproperties;
 
+import org.example.externalproperties.config.BindPropertiesConfiguration;
 import org.example.externalproperties.datasource.AppDataSource;
 import org.example.externalproperties.datasource.DataSource;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +25,12 @@ public class ExternalPropertiesApplication {
         System.out.println(appDataSource.getUsername());
         System.out.println(appDataSource.getPassword());
         System.out.println(appDataSource.getUrl());
+
+        BindPropertiesConfiguration bindPropertiesConfiguration = ctx.getBean(BindPropertiesConfiguration.class);
+        System.out.println("\n----------Bind Properties Using Configuration----------");
+        System.out.println(bindPropertiesConfiguration.getUsername());
+        System.out.println(bindPropertiesConfiguration.getPassword());
+        System.out.println(bindPropertiesConfiguration.getUrl());
     }
 
 }
