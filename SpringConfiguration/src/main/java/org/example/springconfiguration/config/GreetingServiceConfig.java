@@ -1,5 +1,7 @@
 package org.example.springconfiguration.config;
 
+import org.example.repositories.EnglishGreetingRepository;
+import org.example.repositories.EnglishGreetingRepositoryImpl;
 import org.example.services.ConfigBasedGreetingServiceImpl;
 import org.example.services.I18NEnglishConfigBasedGreetingService;
 import org.example.services.I18NSpanishConfigBasedGreetingService;
@@ -23,13 +25,19 @@ public class GreetingServiceConfig {
         return new PrimaryConfigBasedGreetingService();
     };
 
+    @Bean
+    EnglishGreetingRepository englishGreetingRepository() {
+        return new EnglishGreetingRepositoryImpl();
+    }
+
     /*
     By-default Spring will use the method name for the Bean name
+    We can also inject dependencies here in configuration at the time of registering Beans
      */
     @Bean
     @Profile("EN")
-    I18NEnglishConfigBasedGreetingService i18nService() {
-        return new I18NEnglishConfigBasedGreetingService();
+    I18NEnglishConfigBasedGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository) {
+        return new I18NEnglishConfigBasedGreetingService(englishGreetingRepository);
     }
 
     /*
